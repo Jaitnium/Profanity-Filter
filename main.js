@@ -25,17 +25,16 @@ const avoid = {
   'BR' : true
 };*/
 
-
 // p, span, h1, h2, h3, h4, h5, h6, title, main, nav, section
 
 
 
-function traverseDOM(target) {
+function traverseDOM() {
 
   /*
   console.log('document:', document);
   console.log('traverseDom_target:', target);*/
-  const allComments = target.getElementsByClassName('_1qeIAgB0cPwnLhDF9XSiJM');
+  const allComments = document.getElementsByClassName('_1qeIAgB0cPwnLhDF9XSiJM');
 
   console.log(allComments);
 
@@ -74,24 +73,47 @@ function traverseDOM(target) {
   }*/
 }
 
+// CAUTION: NAUGHTY WORDS
+const badWords =
+{
+  'motherfucker': '*firetrucker*',
+  'motherfucka': '*firetrucka*',
+  'bitch': '*witch*',
+  'cum': '*dumb*',
+  'ass': '*donkey*',
+  'fuck': '*duck*',
+  'crap': '*poo*',
+  'shit': '*poop*',
+  'dick': '*snitch*',
+  'cock' : '*rooster*',
+  'bastard' : '*custard*',
+  'cunt' : '*bunt*'
+};
+
 function filter(str) {
 
+  console.log('filter??');
   // handle case sensitive
-  return str.replaceAll('is', 'whaaaaaaaa');
+  for (const key in badWords) {
+    str = str.replaceAll(key, badWords[key]);
+  }
+
+  return str;
 }
 
-traverseDOM(document);
+traverseDOM();
 
 document.addEventListener('scroll', (event) => {
   console.log('target:', event.target);
   console.log('first_child:', event.target.firstChild);
 
-  const allComments = event.target.getElementsByClassName('_1qeIAgB0cPwnLhDF9XSiJM');
-  console.log(allComments, typeof(allComments));
-  //allComments.forEach((element => element.innerText = element.innerText + 's'));
-  for(let i = 0; i < allComments.length; i++) {
-    allComments[i].innerText = allComments[i].innerText + 's';
-  }
+  traverseDOM();
+  // const allComments = event.target.getElementsByClassName('_1qeIAgB0cPwnLhDF9XSiJM');
+  // console.log(allComments, typeof(allComments));
+  // //allComments.forEach((element => element.innerText = element.innerText + 's'));
+  // for(let i = 0; i < allComments.length; i++) {
+  //   allComments[i].innerText = filter(allComments[i].innerText); // + 's';
+  // }
   /*
   traverseDOM(event.target);*/
   /*

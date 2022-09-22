@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.reddit.com/*"],
-      "js": ["./main.js", "./filter.js"]
+      "js": ["./main.js"]
     }
   ]
 }
